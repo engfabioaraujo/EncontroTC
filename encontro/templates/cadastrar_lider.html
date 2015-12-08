@@ -1,0 +1,181 @@
+{% extends "base_adm.html" %}
+{% load render_table from django_tables2 %}
+{% load staticfiles %}
+{% block title %} Cadastro de Líderes {% endblock %}    
+
+{% block css_and_js %} 
+
+<link href="{% static 'css/pagination.css' %}" rel="stylesheet" />
+
+<script language="Javascript">
+	var MyQuestion = function(mymsg, mypath){
+	    this.mymsg = mymsg;
+	    this.mypath = mypath;
+	};
+
+	MyQuestion.prototype.question = function(){
+	    var q = confirm(this.mymsg);
+	    if(q){
+	        window.location = this.mypath;
+	    } else {
+	        return false;
+	    }
+	};	
+
+</script>
+
+{% endblock %}      
+      
+{% block content %}
+<!--main content start-->
+<section id="main-content">
+<section class="wrapper">
+<div class="row">
+<div class="col-lg-12">
+	
+	{% if messages %}	
+	{% for message in messages %}
+	{% if message.tags == "success" %}
+	<div class="alert alert-success fade in">					
+	    <button data-dismiss="alert" class="close close-sm" type="button">
+        	<i class="icon_close"></i>	      
+      	</button>	      	
+      	<strong>{{ message }}</strong>
+	</div>	
+	{% endif %}
+	{% if message.tags == "error" %}
+	<div class="alert alert-block alert-danger fade in">					
+	    <button data-dismiss="alert" class="close close-sm" type="button">
+        	<i class="icon_close"></i>	      
+      	</button>	      	
+      	<strong>{{ message }}</strong>
+	</div>	
+	{% endif %}
+	{% if message.tags == "warning" %}
+	<div class="alert alert-block alert-info fade in">					
+	    <button data-dismiss="alert" class="close close-sm" type="button">
+        	<i class="icon_close"></i>	      
+      	</button>	      	
+      	<strong>{{ message }}</strong>
+	</div>	
+	{% endif %}
+	{% endfor %}
+	{% endif %}	
+
+	<h3 class="page-header"> 
+		<!-- i class="fa fa-user-md" -->
+		Cadastro de Líderes
+	</h3>		                  						          		
+	<!-- cadastrar líder -->				       		
+	<section class="panel"> 
+		<header class="panel-heading">Informe os dados do líder...</header>                                         
+  		<div class="panel-body bio-graph-info">
+			<div class="form">
+              	<form id="lider_form" method="POST" class="form-validate form-horizontal" enctype="multipart/form-data">  
+			    	{% csrf_token %}        			    	                                         			    	
+			    	<div class="form-group">          							      						      		 
+				      	<label class="col-lg-1 control-label">Nome</label>						      	
+				      	<div class="col-lg-3">				      		
+							{{ form.nome }}
+							{{ form.nome.errors }}
+				      	</div>	      			
+				      	<label class="col-lg-1 control-label">Sobrenome</label>								      		
+				      	<div class="col-lg-3">				      													
+				  			{{ form.sobrenome }}
+							{{ form.sobrenome.errors }}			      		
+				      	</div>	      							      	
+          			</div>
+          			<div class="form-group">
+          				<label class="col-lg-1 control-label">Foto</label>
+          				<div class="col-lg-3">				      						      	
+				      		<img src="{% static 'fotos/user-avat.png' %}" alt="Foto do Líder" height="100" width="100" />
+			      			<label for="foto" style="padding: 2px 20px; color: blue; cursor: pointer;">Alterar Foto (Máximo de 20 Mb).</label>
+			      			<center><span class="filename"></span></center>
+							{{ form.foto }}
+							{{ form.foto.errors }}
+				      	</div>	                              				
+			      		<label class="col-lg-1 control-label">Data de Nascimento</label>
+			      		<div class="col-lg-3">			      			
+		          			{{ form.data_nascimento }}
+							{{ form.data_nascimento.errors }}							   								
+			      		</div>			      							      						  
+			  		</div>							
+			  		<div class="form-group">
+			  			<label class="col-lg-1 control-label">Cargo</label>
+			      		<div class="col-lg-3">
+			          		{{ form.cargo }}
+							{{ form.cargo.errors }}
+			      		</div>          				
+			      		<label class="col-lg-1 control-label">Sexo</label>
+			      		<div class="col-lg-3">
+			          		{{ form.sexo }}
+							{{ form.sexo.errors }}
+			      		</div>			      					      		
+			  		</div>  	          						  						          
+			  		<div class="form-group">
+			  			<label class="col-lg-1 control-label">Email</label>
+			      		<div class="col-lg-3">
+			          		{{ form.email }}
+							{{ form.email.errors }}
+			      		</div>			      		
+			  			<label class="col-lg-1 control-label">Telefone</label>
+						<div class="col-lg-3">
+				  			{{ form.telefone }}
+							{{ form.telefone.errors }}
+			      		</div>			      		
+			  		</div>				  		
+			  		<div class="form-group">
+			      		<div class="col-lg-offset-1 col-lg-10">
+			          		<button type="submit" class="btn btn-primary">Cadastrar</button>
+			          		{% url 'cadastrar_lider' as cadastrar_lider %}
+			          		<a class="btn btn-danger" href="{{ cadastrar_lider }}">Cancelar</a>			          		
+			      		</div>
+			  		</div>
+      			</form>
+			</div>
+		</div>
+	</section>
+</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">	    			      	   
+	    {% render_table table_lider %}			
+	</div>
+</div>
+
+</section>
+</section>
+<!--main content end-->
+{% endblock %}     
+
+{% block scripts %}
+
+<!-- javascripts -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- nice scroll -->
+<script src="{% static 'js/jquery.scrollTo.min.js' %}"></script>
+<script src="{% static 'js/jquery.nicescroll.js' %}" type="text/javascript"></script>
+<!-- jquery knob -->
+<script src="{% static 'assets/jquery-knob/js/jquery.knob.js' %}"></script>
+<!--custome script for all page-->
+<script src="{% static 'js/scripts.js' %}"></script>
+
+<!-- jquery validate js -->
+<script src="{% static 'js/jquery.validate.min.js' %}" type="text/javascript"></script>
+<!-- custom form validation script for this page-->
+<script src="{% static 'js/form-validation-script.js' %}"></script>
+
+<script>
+
+	//knob
+	$(".knob").knob();
+
+	$('input[type="file"]').on('change', function (event, files, label) {
+    	var file_name = this.value.replace(/\\/g, '/').replace(/.*\//, '')
+    	$('.filename').text(file_name);
+    });
+
+</script>
+
+{% endblock %} 
