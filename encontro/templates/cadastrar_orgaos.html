@@ -1,9 +1,9 @@
 {% extends "base_adm.html" %}
 {% load render_table from django_tables2 %}
 {% load staticfiles %}
-{% block title %} Cadastro de Orgãos {% endblock %}       
+{% block title %} Cadastro de Orgãos {% endblock %}
 
-{% block css_and_js %} 
+{% block css_and_js %}
 
 <link href="{% static 'css/pagination.css' %}" rel="stylesheet" />
 
@@ -24,7 +24,7 @@
 </script>
 
 {% endblock %}
-      
+
 {% block content %}
 <!--main content start-->
 <section id="main-content">
@@ -32,44 +32,44 @@
 <div class="row">
 <div class="col-lg-12">
 
-	{% if messages %}	
+	{% if messages %}
 	{% for message in messages %}
 	{% if message.tags == "success" %}
-	<div class="alert alert-success fade in">					
+	<div class="alert alert-success fade in">
 	    <button data-dismiss="alert" class="close close-sm" type="button">
-        	<i class="icon_close"></i>	      
-      	</button>	      	
+        	<i class="icon_close"></i>
+      	</button>
       	<strong>{{ message }}</strong>
-	</div>	
+	</div>
 	{% endif %}
 	{% if message.tags == "error" %}
-	<div class="alert alert-block alert-danger fade in">					
+	<div class="alert alert-block alert-danger fade in">
 	    <button data-dismiss="alert" class="close close-sm" type="button">
-        	<i class="icon_close"></i>	      
-      	</button>	      	
+        	<i class="icon_close"></i>
+      	</button>
       	<strong>{{ message }}</strong>
-	</div>	
+	</div>
 	{% endif %}
 	{% endfor %}
-	{% endif %}	
-	      
-	<h3 class="page-header"> 
+	{% endif %}
+
+	<h3 class="page-header">
 		Orgãos
-	</h3>		                  						          		
-	<!-- cadastrar orgão -->				       		
-	<section class="panel"> 
-		<header class="panel-heading">Informe o nome do novo orgão...</header>                                         
+	</h3>
+	<!-- cadastrar orgão -->
+	<section class="panel">
+		<header class="panel-heading">Informe o nome do orgão...</header>                                         
   		<div class="panel-body bio-graph-info">
 			<div class="form">
-              	<form id="orgao_form" method="POST" class="form-validate form-horizontal">  
-			    	{% csrf_token %}                                                 
+              	<form id="orgao_form" method="POST" class="form-validate form-horizontal">
+			    	{% csrf_token %}
           			<div class="form-group">
 	              		<label class="col-lg-1 control-label">Nome</label>
-				      	<div class="col-lg-4">				      		
+				      	<div class="col-lg-4">
 							{{ form.nome }}
 							{{ form.nome.errors }}
-				      	</div>						
-          			</div>						  	          							          			  							          
+				      	</div>
+          			</div>
 			  		<div class="form-group">
 			      		<div class="col-lg-offset-1 col-lg-10">
 			          		<button type="submit" class="btn btn-primary">Cadastrar</button>
@@ -84,14 +84,14 @@
 </div>
 </div>
 <div class="row">
-	<div class="col-lg-12">	    			      	   
-	    {% render_table table_orgao %}			
+	<div class="col-lg-12">
+	    {% render_table table_orgao %}
 	</div>
 </div>
 </section>
 </section>
 <!--main content end-->
-{% endblock %}     
+{% endblock %}
 
 {% block scripts %}
 
@@ -110,4 +110,4 @@
 <!-- custom form validation script for this page-->
 <script src="{% static 'js/form-validation-script.js' %}"></script>
 
-{% endblock %} 
+{% endblock %}
