@@ -1,1 +1,10 @@
 /.project
+
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+.idea/
+*.iml
