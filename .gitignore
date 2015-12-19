@@ -13,3 +13,7 @@
 *.swp
 *.swo
 
+# Eclipse
+.project
+.pydevproject
+.settings
