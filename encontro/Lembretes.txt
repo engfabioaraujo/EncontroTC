@@ -1,8 +1,0 @@
-Lembretes para o Projeto
-
-1] Funcionalidade para um único encontro ser ativo.
-   Sempre que um encontro foi ativado como ativo, o sistema terá que exibir uma mensagem dizendo que algum outro se encontra ativo e que será desativado.
-   Na ativação de um encontro, todos os outros cadastrados serão desativados.
-   
-
-2] Sistema de numeração "." e "," estão diferentes no form e no grid.
