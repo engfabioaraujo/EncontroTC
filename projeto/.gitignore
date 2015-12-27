@@ -1,0 +1,19 @@
+/.project
+
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+.idea/
+*.iml
+
+*~
+*.swp
+*.swo
+
+# Eclipse
+.project
+.pydevproject
+.settings
