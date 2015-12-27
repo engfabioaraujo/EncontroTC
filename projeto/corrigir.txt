@@ -1,0 +1,13 @@
+>> Encontro
+
+	1 - Configurar o sistema de numeração para operar com o padrão brasileiro (",").
+
+>> Líder
+
+	1 - Atualizar a imagem quando carregar a foto.
+	2 - Mostrar a foto do líder no modo de edição.
+
+>> Perfil 
+
+	1 - Ajustar o layout de exibição da imagem ao formato exibido na tela de Líder.
+	2 - Atualizar a imagem quando carregar a foto.
