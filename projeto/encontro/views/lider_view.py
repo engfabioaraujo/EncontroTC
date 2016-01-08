@@ -16,6 +16,7 @@ from encontro.forms import LiderForm
 from encontro.tables import LiderTable
 from usuario.views.usuario_views import entrar
 
+
 #######################################################################################################################################################################
 # Cadastro de Líderes #################################################################################################################################################
 #######################################################################################################################################################################
@@ -32,6 +33,7 @@ def cadastrar_lider(request):
 
         # 2015-12-22
         data = dict(request.POST)["data_nascimento"]
+        data = data[0].split('/')
         ano = data[2]
         mes = data[1]
         dia = data[0]
@@ -76,6 +78,7 @@ def cadastrar_lider(request):
 
     # se nenhuma informacao for passada, exibe a pagina com o formulário
     return render(request, "cadastrar_lider.html", {"form": LiderForm(), 'table_lider': table_lider})
+
 
 #######################################################################################################################################################################
 # Editar Líderes ######################################################################################################################################################
@@ -151,6 +154,7 @@ def editar_lider(request, id):
 
     # se nenhuma informacao for passada, exibe a pagina com o formulário
     return render(request, "cadastrar_lider.html", {"form": LiderForm(initial = {'nome': lider.nome, 'sobrenome': lider.sobrenome, 'telefone': lider.telefone, 'email': lider.email, 'sexo': lider.sexo, 'data_nascimento': lider.data_nascimento, 'cargo': lider.cargo}), 'table_lider': table_lider})
+
 
 #######################################################################################################################################################################
 # Página de excluir Líderes ###########################################################################################################################################
