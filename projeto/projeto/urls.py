@@ -3,7 +3,7 @@ from django.contrib import admin
 
 from . import views
 from usuario.views import usuario_views, grupo_views
-from encontro.views import orgao_view, encontro_view, lider_view, quarto_view
+from encontro.views import orgao_view, encontro_view, lider_view, quarto_view, equipe_view
 
 urlpatterns = [
     #Aplicações
@@ -43,7 +43,15 @@ urlpatterns = [
     url(r'^excluir_lider/(?P<id>[0-9]+)/$', lider_view.excluir_lider, name='excluir_lider'),    # Página para Excluir Líderes
 
     #Quartos
-    url(r'^cadastrar_quartos$', quarto_view.cadastrar_quartos, name='cadastrar_quartos'),              # Página de Cadastro de Orgãos
-    #url(r'^editar_quartos/(?P<id>[0-9]+)/$', quarto_view.editar_quartos, name='editar_quartos'),       # Página para Editar Orgãos
-    url(r'^excluir_quartos/(?P<id>[0-9]+)/$', quarto_view.excluir_quartos, name='excluir_quartos'),    # Página para Excluir Orgãos
+    url(r'^cadastrar_quartos$', quarto_view.cadastrar_quartos, name='cadastrar_quartos'),              # Página de Cadastro de Quartos
+    url(r'^editar_quartos/(?P<id>[0-9]+)/$', quarto_view.editar_quartos, name='editar_quartos'),       # Página para Editar Quartos
+    url(r'^excluir_quartos/(?P<id>[0-9]+)/$', quarto_view.excluir_quartos, name='excluir_quartos'),    # Página para Excluir Quartos
+    url(r'^excluir_responsaveis_quarto/(?P<idq>[0-9]+)/(?P<idr>[0-9]+)/$', quarto_view.excluir_responsaveis_quarto, name='excluir_responsaveis_quarto'),    # Página para Excluir Responsáveis por Quarto
+
+    #Equipes
+    url(r'^cadastrar_equipes$', equipe_view.cadastrar_equipes, name='cadastrar_equipes'),              # Página de Cadastro de Equipes
+    url(r'^editar_equipes/(?P<id>[0-9]+)/$', equipe_view.editar_equipes, name='editar_equipes'),       # Página para Editar Equipes
+    url(r'^excluir_equipes/(?P<id>[0-9]+)/$', equipe_view.excluir_equipes, name='excluir_equipes'),    # Página para Excluir Equipes
+    url(r'^excluir_componentes_equipe/(?P<ide>[0-9]+)/(?P<idc>[0-9]+)/$', equipe_view.excluir_componentes_equipe, name='excluir_componentes_equipe'),    # Página para Excluir Componentes por Equipe
+
 ]

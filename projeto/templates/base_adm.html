@@ -130,11 +130,12 @@
 		    <ul class="sub">
 		          {% url 'cadastrar_encontros' as encontros %}
 		          <li><a class="" href="{{ encontros }}">Encontro</a></li>
-							{% url 'cadastrar_orgaos' as orgaos %}
-		          <li><a class="" href="{{ orgaos }}">Orgãos</a></li>
+							{% url 'cadastrar_equipes' as equipes %}
+							<li><a class="" href="{{ equipes }}">Equipes</a></li>
 							{% url 'cadastrar_lider' as lideres %}
 		          <li><a class="" href="{{ lideres }}">Líderes</a></li>
-							<li><a class="" href="{{ equipes }}">Equipes</a></li>
+							{% url 'cadastrar_orgaos' as orgaos %}
+		          <li><a class="" href="{{ orgaos }}">Orgãos</a></li>
 							{% url 'cadastrar_quartos' as quartos %}
 		          <li><a class="" href="{{ quartos }}">Quartos</a></li>
 		    </ul>

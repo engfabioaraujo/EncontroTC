@@ -54,30 +54,37 @@
 	{% endif %}
 
 	<h3 class="page-header">
-		Quartos
+		Quartos - Responsáveis
 	</h3>
-	<!-- cadastrar quartos -->
+	<!-- cadastrar quarto -->
 	<section class="panel">
-		<header class="panel-heading">Informe o nome do quarto...</header>
+		<header class="panel-heading">Informe os responsáveis pelo quarto...</header>
   		<div class="panel-body bio-graph-info">
 			<div class="form">
-        	<form id="quarto_form" method="POST" class="form-validate form-horizontal">
-    	    {% csrf_token %}
-					<div class="form-group">
-          <label class="col-lg-1 control-label">Nome</label>
-	      	<div class="col-lg-6">
-          {{ form.nome }}
-				  {{ form.nome.errors }}
-	      	</div>
-    			</div>
-  				<div class="form-group">
-      		<div class="col-lg-offset-1 col-lg-10">
-          		<button type="submit" class="btn btn-primary">Cadastrar</button>
-          		{% url 'cadastrar_quartos' as quartos %}
-          		<a class="btn btn-danger" href="{{ quartos }}">Cancelar</a>
-      		</div>
-  				</div>
-					</form>
+          	<form id="quarto_form" method="POST" class="form-validate form-horizontal">
+	    	    {% csrf_token %}
+						<div class="form-group">
+	              <label class="col-lg-1 control-label">Nome</label>
+				      	<div class="col-lg-6">
+                {{ form.nome }}
+							  {{ form.nome.errors }}
+				      	</div>
+          			</div>
+								<div class="form-group">
+								<label class="col-lg-1 control-label">Responsáveis</label>
+								<div class="col-lg-6">
+                {{ form.responsavel }}
+							  {{ form.responsavel.errors }}
+								</div>
+      			</div>
+			  		<div class="form-group">
+			      		<div class="col-lg-offset-1 col-lg-10">
+			          		<button type="submit" class="btn btn-primary">Adicionar Responsável</button>
+			          		{% url 'cadastrar_quartos' as quartos %}
+			          		<a class="btn btn-danger" href="{{ quartos }}">Voltar</a>
+			      		</div>
+			  		</div>
+      			</form>
 			</div>
 		</div>
 	</section>
@@ -85,7 +92,7 @@
 </div>
 <div class="row">
 	<div class="col-lg-12">
-	    {% render_table table_quarto %}
+	    {% render_table table_quarto_responsaveis %}
 	</div>
 </div>
 </section>

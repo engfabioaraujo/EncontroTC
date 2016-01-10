@@ -1,7 +1,7 @@
 {% extends "base_adm.html" %}
 {% load render_table from django_tables2 %}
 {% load staticfiles %}
-{% block title %} Cadastro de Quartos {% endblock %}
+{% block title %} Cadastro de Equipes {% endblock %}
 
 {% block css_and_js %}
 
@@ -54,30 +54,37 @@
 	{% endif %}
 
 	<h3 class="page-header">
-		Quartos
+		Equipes - Componentes
 	</h3>
-	<!-- cadastrar quartos -->
+	<!-- cadastrar equipe -->
 	<section class="panel">
-		<header class="panel-heading">Informe o nome do quarto...</header>
+		<header class="panel-heading">Informe os componentes da equipe...</header>
   		<div class="panel-body bio-graph-info">
 			<div class="form">
-        	<form id="quarto_form" method="POST" class="form-validate form-horizontal">
-    	    {% csrf_token %}
-					<div class="form-group">
-          <label class="col-lg-1 control-label">Nome</label>
-	      	<div class="col-lg-6">
-          {{ form.nome }}
-				  {{ form.nome.errors }}
-	      	</div>
-    			</div>
-  				<div class="form-group">
-      		<div class="col-lg-offset-1 col-lg-10">
-          		<button type="submit" class="btn btn-primary">Cadastrar</button>
-          		{% url 'cadastrar_quartos' as quartos %}
-          		<a class="btn btn-danger" href="{{ quartos }}">Cancelar</a>
-      		</div>
-  				</div>
-					</form>
+          	<form id="quarto_form" method="POST" class="form-validate form-horizontal">
+	    	    {% csrf_token %}
+						<div class="form-group">
+	              <label class="col-lg-1 control-label">Nome</label>
+				      	<div class="col-lg-6">
+                {{ form.nome }}
+							  {{ form.nome.errors }}
+				      	</div>
+          			</div>
+								<div class="form-group">
+								<label class="col-lg-1 control-label">Componentes</label>
+								<div class="col-lg-6">
+                {{ form.componente }}
+							  {{ form.componente.errors }}
+								</div>
+      			</div>
+			  		<div class="form-group">
+			      		<div class="col-lg-offset-1 col-lg-10">
+			          		<button type="submit" class="btn btn-primary">Adicionar Componente</button>
+			          		{% url 'cadastrar_equipes' as equipes %}
+			          		<a class="btn btn-danger" href="{{ equipes }}">Voltar</a>
+			      		</div>
+			  		</div>
+      			</form>
 			</div>
 		</div>
 	</section>
@@ -85,7 +92,7 @@
 </div>
 <div class="row">
 	<div class="col-lg-12">
-	    {% render_table table_quarto %}
+	    {% render_table table_equipe_componentes %}
 	</div>
 </div>
 </section>
