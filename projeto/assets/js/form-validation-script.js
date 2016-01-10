@@ -1,22 +1,52 @@
 var Script = function () {
 
     $().ready(function() {
-        // validate the comment form when it is submitted
-        $("#feedback_form").validate();
 
-        // Validação de Formulários de Registro de Usuário
+        //#####################################################################################################################################
+        //Validação de Formulários de Registro de Usuário
+        //#####################################################################################################################################
         $("#usuario_form").validate({
             rules: {
                 nome: {
                     required: true,
-		    minlength: 2
+		                minlength: 2
                 },
-		sobrenome: {
+		            sobrenome: {
                     required: true,
-    		    minlength: 2
+    		            minlength: 2
                 },
-                endereco: {
+                email: {
                     required: true,
+                    email: true
+                },
+                agree: "required"
+            },
+            messages: {
+                nome: {
+                    required: "Por favor, digite o nome do usuário.",
+                    minlength: "O nome do usuário deve ter pelo menos 2 caracteres."
+                },
+		            sobrenome: {
+                    required: "Por favor, digite o sobrenome do usuário.",
+                    minlength: "O sobrenome do usuário deve ter pelo menos 2 caracteres."
+                },
+                email: "Por favor, digite um endereço de email válido.",
+                agree: "Queira aceitar os nossos termos e condições."
+            }
+        });
+
+        //#####################################################################################################################################
+        //Validação de Formulários de Edição de Perfil
+        //#####################################################################################################################################
+        $("#perfil_form").validate({
+            rules: {
+                nome: {
+                    required: true,
+		                minlength: 2
+                },
+		            sobrenome: {
+                    required: true,
+    		            minlength: 2
                 },
                 senha: {
                     required: true,
@@ -30,26 +60,23 @@ var Script = function () {
                 email: {
                     required: true,
                     email: true
-                },                
+                },
                 agree: "required"
             },
-            messages: {                
+            messages: {
                 nome: {
                     required: "Por favor, digite o nome do usuário.",
-                    minlength: "O nome do usuário deve ser pelo menos 2 caracteres."
+                    minlength: "O nome do usuário deve ter pelo menos 2 caracteres."
                 },
-		sobrenome: {
+		            sobrenome: {
                     required: "Por favor, digite o sobrenome do usuário.",
-                    minlength: "O sobrenome do usuário deve ser pelo menos 2 caracteres."
-                },
-                endereco: {
-                    required: "Por favor, digite o endereço.",
+                    minlength: "O sobrenome do usuário deve ter pelo menos 2 caracteres."
                 },
                 senha: {
                     required: "Por favor, digite a sua senha.",
                     minlength: "Sua senha precisa ter pelo menos 5 caracteres."
                 },
-                confirm_password: {
+                confirmar_senha: {
                     required: "Por favor, confirme sua senha.",
                     minlength: "Sua senha precisa ter pelo menos 5 caracteres.",
                     equalTo: "Por favor, digite a mesma senha informada anteriormente."
@@ -58,6 +85,9 @@ var Script = function () {
                 agree: "Queira aceitar os nossos termos e condições."
             }
         });
+
+        // validate the comment form when it is submitted
+        $("#feedback_form").validate();
 
         // propose username by combining first- and lastname
         $("#username").focus(function() {
@@ -80,6 +110,4 @@ var Script = function () {
             topicInputs.attr("disabled", !this.checked);
         });
     });
-
-
 }();

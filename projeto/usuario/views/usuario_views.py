@@ -113,7 +113,7 @@ def registrar_usuario(request):
 
 			except IntegrityError:
 				#Envia uma mensagem informando o erro de banco.
-				messages.error(request, 'o nome "{}" já está sendo utilizado. Por favor, tente um email diferente.'.format(email))
+				messages.error(request, 'O email "{}" já está sendo utilizado. Por favor, tente um email diferente.'.format(email))
 				return render(request, "registrar_usuario.html", {"form": RegistrarUsuarioForm(), 'table_usuario': table_usuario})
 		else:
 			messages.warning(request, 'Desculpe, algo não funcionou como esperavamos... Tente novamente!')
@@ -170,7 +170,7 @@ def editar_usuario(request, id):
 
 			except IntegrityError:
 				#Envia uma mensagem informando o erro de banco.
-				messages.error(request, 'o email "{}" já está sendo utilizado. Por favor, tente um email diferente.'.format(email))
+				messages.error(request, 'O email "{}" já está sendo utilizado. Por favor, tente um email diferente.'.format(email))
 				return render(request, "registrar_usuario.html", {"form": RegistrarUsuarioForm(), 'table_usuario': table_usuario})
 		else:
 			messages.warning(request, 'Desculpe, algo não funcionou como esperavamos... Tente novamente!')
@@ -232,7 +232,7 @@ def editar_perfil(request):
 
 			except IntegrityError:
 				#Envia uma mensagem informando o erro de banco.
-				messages.error(request, 'Erro no banco.') #o nome "{}" já está sendo utilizado. Por favor, tente um email diferente. .format(email)
+				messages.error(request, 'O email "{}" já está sendo utilizado. Por favor, tente um email diferente.'.format(email))
 				return render(request, "editar_perfil.html", {"form": EditarUsuarioForm(initial = {'nome': user.first_name, 'sobrenome': user.last_name, 'email': user.email, 'senha': user.password, 'confirmar_senha': user.password }), "usuario": request.user, "perfil": Perfil.objects.get(pk=request.user.pk)})
 		else:
 			messages.warning(request, 'Desculpe, algo não funcionou como esperavamos... Tente novamente!')

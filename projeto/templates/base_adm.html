@@ -148,7 +148,8 @@
 		    </a>
 		    <ul class="sub">
 		          <li><a class="" href="">Camisas</a></li>
-		          <li><a class="" href="">Participantes</a></li>
+							{% url 'relatorio_equipes' as equipes_report %}
+		          <li><a class="" href="{{ equipes_report }}">Equipes</a></li>
 							<li><a class="" href="">Participantes/Quarto</a></li>
 		    </ul>
 		  </li>

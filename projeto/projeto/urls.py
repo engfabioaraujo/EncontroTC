@@ -4,6 +4,7 @@ from django.contrib import admin
 from . import views
 from usuario.views import usuario_views, grupo_views
 from encontro.views import orgao_view, encontro_view, lider_view, quarto_view, equipe_view
+from relatorio.views import equipe_report_view
 
 urlpatterns = [
     #Aplicações
@@ -54,4 +55,6 @@ urlpatterns = [
     url(r'^excluir_equipes/(?P<id>[0-9]+)/$', equipe_view.excluir_equipes, name='excluir_equipes'),    # Página para Excluir Equipes
     url(r'^excluir_componentes_equipe/(?P<ide>[0-9]+)/(?P<idc>[0-9]+)/$', equipe_view.excluir_componentes_equipe, name='excluir_componentes_equipe'),    # Página para Excluir Componentes por Equipe
 
+    #Relatórios
+    url(r'^relatorio_equipes$', equipe_report_view.relatorio_equipes, name='relatorio_equipes'),        # Página de Relatório de Equipes
 ]

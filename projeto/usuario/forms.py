@@ -19,7 +19,7 @@ class EditarUsuarioForm(forms.Form):
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'id': 'email', 'class': 'form-control', 'name': 'email', 'required': True})) 				#'value': {{ user.email }},
 	senha = forms.CharField(max_length=128, widget=forms.PasswordInput(attrs={'id': 'senha', 'class': 'form-control', 'name': 'senha', 'required': True}))
 	confirmar_senha = forms.CharField(max_length=128, widget=forms.PasswordInput(attrs={'id': 'confirmar_senha', 'class': 'form-control', 'name': 'confirmar_senha', 'required': True}))
-	foto = forms.ImageField(label='Selecione a sua Foto de Perfil...', widget=forms.FileInput(attrs={'id': 'foto', 'class': 'form-control', 'name': 'foto', 'required': False}))
+	foto = forms.ImageField(label='Selecione a sua Foto de Perfil...', widget=forms.FileInput(attrs={'id': 'foto', 'class': 'form-control', 'name': 'foto', 'style': "display:none", 'required': False}))
 
 #Formulário para Cadastro de Grupos de Usuário
 class CadastrarGruposForm(forms.Form):
