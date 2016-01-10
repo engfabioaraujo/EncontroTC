@@ -40,78 +40,85 @@
 		{% endif %}
 
 		</div>
-	</div>
-	<div class="row">
-	<!-- cabeçalho com informações do usuário -->
-	<div class="col-lg-12">
-    	<div class="profile-widget profile-widget-info">
+	  </div>
+
+    <div class="row">
+	  <!-- cabeçalho com informações do usuário -->
+	  <div class="col-lg-12">
+    <div class="profile-widget profile-widget-info">
 		<div class="panel-body">
 		    	<div class="col-lg-2 col-sm-2">
 		      		<h4>{{ usuario.get_full_name }}</h4>
 		      		<h6>{{ usuario.email }}</h6>
 		    	</div>
 		</div>
-    	</div>
-	</div>
-	</div>
-      	<!-- page start-->
-      	<div class="row">
-        <div class="col-lg-12">
-        	<section class="panel">
+    </div>
+	  </div>
+	  </div>
+
+    <!-- page start-->
+    <div class="row">
+    <div class="col-lg-12">
+    <section class="panel">
   		<div class="panel-body bio-graph-info">
 			<div class="form">
 				<span><br /></span>
-              	<form method="POST" class="form-validate form-horizontal" enctype="multipart/form-data">
+            <form id="perfil_form" method="POST" class="form-validate form-horizontal" enctype="multipart/form-data">
 			    	{% csrf_token %}
-          			<div class="form-group">
-	              			<label class="col-lg-1 control-label">Nome</label>
+      			<div class="form-group">
+            			<label class="col-lg-1 control-label">Nome</label>
+      		      	<div class="col-lg-3">
+      					  {{ form.nome }}
+      					  {{ form.nome.errors }}
+      				    </div>
+      					  <label class="col-lg-1 control-label">Sobrenome</label>
+      					  <div class="col-lg-3">
+      					  {{ form.sobrenome }}
+      					  {{ form.sobrenome.errors }}
+      			      </div>
+          	</div>
+
+            <div class="form-group">
+                <label class="col-lg-1 control-label">Foto</label>
+                <div class="col-lg-3">
+                {% if perfil.foto.url %}
+                    <img src="{{ perfil.foto.url }}" alt="Foto de Perfil" height="100" width="100" />
+                {% else %}
+                    <img src="{% static 'fotos/user-avat.png' %}" alt="Foto de Perfil" height="100" width="100" />
+                {% endif %}
+                <label for="foto" style="padding: 2px 20px; color: blue; cursor: pointer;">Alterar Foto (Máximo de 20 Mb).</label>
+                <center><span class="filename"></span></center>
+                {{ form.foto }}
+                {{ form.foto.errors }}
+                </div>
+
+                <label class="col-lg-1 control-label">Email</label>
+                <div class="col-lg-3">
+                {{ form.email }}
+        				{{ form.email.errors }}
+                </div>
+            </div>
+
+				    <div class="form-group">
+					      <label class="col-lg-1 control-label">Senha</label>
 				      	<div class="col-lg-3">
-					{{ form.nome }}
-					{{ form.nome.errors }}
+					      {{ form.senha }}
+					      {{ form.senha.errors }}
 				      	</div>
-					<label class="col-lg-1 control-label">Sobrenome</label>
-					<div class="col-lg-3">
-					{{ form.sobrenome }}
-					{{ form.sobrenome.errors }}
+					      <label class="col-lg-1 control-label">Confirmar Senha</label>
+					      <div class="col-lg-3">
+					      {{ form.confirmar_senha }}
+				        {{ form.confirmar_senha.errors }}
 			      		</div>
-          			</div>
-			  	<div class="form-group">
-			      		<label class="col-lg-1 control-label">Email</label>
-			      		<div class="col-lg-7">
-					{{ form.email }}
-					{{ form.email.errors }}
-			      		</div>
-			  	</div>
-				<div class="form-group">
-					<label class="col-lg-1 control-label">Senha</label>
-				      	<div class="col-lg-3">
-					{{ form.senha }}
-					{{ form.senha.errors }}
-				      	</div>
-					<label class="col-lg-1 control-label">Confirmar Senha</label>
-					<div class="col-lg-3">
-					{{ form.confirmar_senha }}
-					{{ form.confirmar_senha.errors }}
-			      		</div>
-          			</div>
-				<div class="form-group">
-                                      	<label class="col-lg-1 control-label"></label>
-					<div class="col-lg-2">
-					<span class="btn btn-default btn-file"><span>Foto de Perfil...</span>
-			  			<img src="{{ perfil.foto.url }}" alt="foto_usuario" height="50" width="50" class="follow-ava" />
-						{{ form.foto }}
-					</span>
-					{{ form.foto.errors }}
-					</div>
-                                </div>
-			  	<div class="form-group">
+            </div>
+			      <div class="form-group">
 			      		<div class="col-lg-offset-1 col-lg-10">
-			          		<button type="submit" class="btn btn-primary">Cadastrar</button>
-			          		{% url 'editar_perfil' as editar_perfil %}
-			          		<a class="btn btn-danger" href="{{ editar_perfil }}">Cancelar</a>
+			      		<button type="submit" class="btn btn-primary">Cadastrar</button>
+			      		{% url 'editar_perfil' as editar_perfil %}
+			      		<a class="btn btn-danger" href="{{ editar_perfil }}">Cancelar</a>
 			      		</div>
-			  	</div>
-      				</form>
+			      </div>
+            </form>
 			</div>
 		</div>
 	</section>

@@ -95,7 +95,15 @@ def editar_lider(request, id):
     if request.method == 'POST':
 
         # 2015-12-22
+        #data = dict(request.POST)["data_nascimento"]
+        #ano = data[2]
+        #mes = data[1]
+        #dia = data[0]
+        #request.POST["data_nascimento"] = '{}-{}-{}'.format(ano, mes, dia)
+
+        # 2015-12-22
         data = dict(request.POST)["data_nascimento"]
+        data = data[0].split('/')
         ano = data[2]
         mes = data[1]
         dia = data[0]
@@ -147,13 +155,13 @@ def editar_lider(request, id):
             except IntegrityError:
                 # Envia uma mensagem informando o erro de banco.
                 messages.error(request, 'O email "{}" já está sendo utilizado. Por favor, tente um nome diferente.'.format(email))
-                return render(request, "cadastrar_lider.html", {"form": LiderForm(), 'table_lider': table_lider})
+                return render(request, "cadastrar_lider.html", {"form": LiderForm(), 'table_lider': table_lider, 'lider': lider})
         else:
             messages.warning(request, 'Desculpe, algo não funcionou como esperavamos... Tente novamente!')
             return redirect('cadastrar_lider')
 
     # se nenhuma informacao for passada, exibe a pagina com o formulário
-    return render(request, "cadastrar_lider.html", {"form": LiderForm(initial = {'nome': lider.nome, 'sobrenome': lider.sobrenome, 'telefone': lider.telefone, 'email': lider.email, 'sexo': lider.sexo, 'data_nascimento': lider.data_nascimento, 'cargo': lider.cargo}), 'table_lider': table_lider})
+    return render(request, "cadastrar_lider.html", {"form": LiderForm(initial = {'nome': lider.nome, 'sobrenome': lider.sobrenome, 'telefone': lider.telefone, 'email': lider.email, 'sexo': lider.sexo, 'data_nascimento': lider.data_nascimento, 'cargo': lider.cargo}), "table_lider": table_lider, "lider": lider})
 
 
 #######################################################################################################################################################################

@@ -100,7 +100,26 @@ class Quarto(models.Model):
         return '%s - %s' % (self.alt_usuario_nome, self.alt_usuario_data)
 
     def get_responsaveis(self):
-        return 'IMPLEMENTAR'
+        responsaveis = list(self.responsaveis.order_by("nome"))
+
+        nomes = []
+        i = 0
+
+        while i < len(responsaveis):
+            nomes.append(responsaveis[i].get_nome_completo())
+            i = i + 1
+        nomes = ' - '.join(nomes)
+
+        return nomes
+
+''' Como não criar a tabela correspondente no Banco de Dados desse Modelo? '''
+''' Existe alguma outra solução para essa implementação? '''
+class ResponsavelQuarto(models.Model):
+    def __init__(self, quartoid, responsavelid, nome, telefone, email):
+        self.responsavelquartoid = [quartoid, responsavelid]
+        self.nome = nome
+        self.telefone = telefone
+        self.email = email
 
 #######################################################################################################################################################################
 # Classe Orgão ########################################################################################################################################################
@@ -217,9 +236,10 @@ class Inscricao(models.Model):
 class Equipe(models.Model):
 
     nome = models.CharField(max_length=30)
-    membros = models.ManyToManyField(Lider)
+    componentes = models.ManyToManyField(Lider, verbose_name=u'Componentes')
 
     encontro = models.ForeignKey(Encontro)
+
     alt_usuario_nome = models.CharField(max_length=100, default="Administrador")
     alt_usuario_data = models.DateField(u'Data de Alteração', default=timezone.now)
 
@@ -228,3 +248,25 @@ class Equipe(models.Model):
 
     def get_ultima_alteracao(self):
         return '%s - %s' % (self.alt_usuario_nome, self.alt_usuario_data)
+
+    def get_componentes(self):
+        componentes = list(self.componentes.order_by("nome"))
+
+        nomes = []
+        i = 0
+
+        while i < len(componentes):
+            nomes.append(componentes[i].get_nome_completo())
+            i = i + 1
+        nomes = ' - '.join(nomes)
+
+        return nomes
+
+''' Como não criar a tabela correspondente no Banco de Dados desse Modelo? '''
+''' Existe alguma outra solução para essa implementação? '''
+class ComponenteEquipe(models.Model):
+    def __init__(self, equipeid, componenteid, nome, telefone, email):
+        self.componente_equipe_id = [equipeid, componenteid]
+        self.nome = nome
+        self.telefone = telefone
+        self.email = email

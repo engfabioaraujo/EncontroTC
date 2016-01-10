@@ -90,7 +90,11 @@
         			<div class="form-group">
           				<label class="col-lg-1 control-label">Foto</label>
           				<div class="col-lg-3">
-				      		<img src="{% static 'fotos/user-avat.png' %}" alt="Foto do Líder" height="100" width="100" />
+									{% if lider %}
+											<img src="{{ MEDIA_URL }}{{ lider.foto }}" alt="Foto do Líder" height="100" width="100" />
+									{% else %}
+											<img src="{% static 'fotos/user-avat.png' %}" alt="Foto do Líder" height="100" width="100" />
+          				{% endif %}
 			      			<label for="foto" style="padding: 2px 20px; color: blue; cursor: pointer;">Alterar Foto (Máximo de 20 Mb).</label>
 			      			<center><span class="filename"></span></center>
 									{{ form.foto }}

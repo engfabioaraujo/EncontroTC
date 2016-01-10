@@ -54,15 +54,23 @@ class LiderForm(forms.Form):
 #######################################################################################################################################################################
 #Formulário para Cadastrar e Editar Quarto ############################################################################################################################
 #######################################################################################################################################################################
-class QuartoForm(forms.Form):
+class QuartoCadastrarForm(forms.Form):
 
 	nome = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'id': 'nome', 'class': 'form-control', 'name': 'nome', 'required': True}))
-	responsavel = forms.ChoiceField(choices=[ (l.id, l.nome) for l in Lider.objects.all()], widget=forms.Select(attrs={'id': 'responsavel', 'class': 'form-control m-bot15', 'name': 'responsavel', 'required': True}))
-	responsaveis = forms.ModelMultipleChoiceField(queryset=Lider.objects.all(), widget=FilteredSelectMultiple(verbose_name='Lider', is_stacked=False, attrs={'id': 'responsaveis', 'class': 'form-control m-bot15', 'name': 'responsaveis'}))
 
-'''
-	def __init__(self, *args, **kwargs):
-		super(QuartoForm, self).__init__(*args, **kwargs)
-		if self.pk:
-			self.fields['responsaveis'].initial = self.responsaveis.all()
-'''
+class QuartoEditarForm(forms.Form):
+
+	nome = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'id': 'nome', 'class': 'form-control', 'name': 'nome', 'required': True, 'readonly': 'readonly'}))
+	responsavel = forms.ChoiceField(choices=[ (l.id, l.get_nome_completo()) for l in Lider.objects.all()], widget=forms.Select(attrs={'id': 'responsavel', 'class': 'form-control m-bot15', 'name': 'responsavel', 'required': True}))
+
+#######################################################################################################################################################################
+#Formulário para Cadastrar e Editar Equipes ###########################################################################################################################
+#######################################################################################################################################################################
+class EquipeCadastrarForm(forms.Form):
+
+	nome = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'id': 'nome', 'class': 'form-control', 'name': 'nome', 'required': True}))
+
+class EquipeEditarForm(forms.Form):
+
+	nome = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'id': 'nome', 'class': 'form-control', 'name': 'nome', 'required': True, 'readonly': 'readonly'}))
+	componente = forms.ChoiceField(choices=[ (l.id, l.get_nome_completo()) for l in Lider.objects.all()], widget=forms.Select(attrs={'id': 'componente', 'class': 'form-control m-bot15', 'name': 'responsavel', 'required': True}))
