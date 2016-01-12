@@ -34,9 +34,9 @@ def cadastrar_lider(request):
         # 2015-12-22
         data = dict(request.POST)["data_nascimento"]
         data = data[0].split('/')
-        ano = data[2]
-        mes = data[1]
-        dia = data[0]
+        ano = data[2].strip()
+        mes = data[1].strip()
+        dia = data[0].strip()
         request.POST["data_nascimento"] = '{}-{}-{}'.format(ano, mes, dia)
 
         if form.is_valid():
@@ -79,7 +79,6 @@ def cadastrar_lider(request):
     # se nenhuma informacao for passada, exibe a pagina com o formulário
     return render(request, "cadastrar_lider.html", {"form": LiderForm(), 'table_lider': table_lider})
 
-
 #######################################################################################################################################################################
 # Editar Líderes ######################################################################################################################################################
 #######################################################################################################################################################################
@@ -104,13 +103,12 @@ def editar_lider(request, id):
         # 2015-12-22
         data = dict(request.POST)["data_nascimento"]
         data = data[0].split('/')
-        ano = data[2]
-        mes = data[1]
-        dia = data[0]
+        ano = data[2].strip()
+        mes = data[1].strip()
+        dia = data[0].strip()
         request.POST["data_nascimento"] = '{}-{}-{}'.format(ano, mes, dia)
 
-        form = LiderForm(request.POST, request.FILES, initial = {'nome': lider.nome, 'sobrenome': lider.sobrenome, 'telefone': lider.telefone, 'email': lider.email,
-            'sexo': lider.sexo, 'data_nascimento': lider.data_nascimento, 'cargo': lider.cargo})
+        form = LiderForm(request.POST, request.FILES, initial = {'nome': lider.nome, 'sobrenome': lider.sobrenome, 'telefone': lider.telefone, 'email': lider.email, 'sexo': lider.sexo, 'data_nascimento': lider.data_nascimento, 'cargo': lider.cargo})
 
         if form.is_valid():
 

@@ -49,7 +49,7 @@ class LiderForm(forms.Form):
 	data_nascimento = forms.DateField(initial=date.today(), widget=extras.SelectDateWidget(attrs={'id': 'data_nascimento', 'class': 'form-control', 'name': 'data_nascimento', 'required': False}))
 
 	cargo = forms.ChoiceField(choices=CHOICES_CARGO, widget=forms.Select(attrs={'id': 'cargo', 'class': 'form-control', 'name': 'cargo', 'required': True}))
-	foto = forms.ImageField(label='Selecione a Foto...', widget=forms.FileInput(attrs={'id': 'foto', 'class': 'form-control', 'name': 'foto', 'style': "display:none", 'required': True}))
+	foto = forms.ImageField(label='Selecione a Foto...', widget=forms.FileInput(attrs={'id': 'foto', 'class': 'form-control', 'name': 'foto', 'style': "display:none", 'required': False}))
 
 #######################################################################################################################################################################
 #Formulário para Cadastrar e Editar Quarto ############################################################################################################################
