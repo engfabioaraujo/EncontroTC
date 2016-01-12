@@ -46,7 +46,7 @@ class LiderForm(forms.Form):
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'id': 'email', 'class': 'form-control', 'name': 'email', 'required': True}))
 	sexo = forms.ChoiceField(choices=CHOICES_SEXO, widget=forms.Select(attrs={'id': 'sexo', 'class': 'form-control m-bot15', 'name': 'sexo', 'required': True}))
 
-	data_nascimento = forms.DateField(initial=date.today(), widget=extras.SelectDateWidget(years=range(date.today().year, 1970, -1), attrs={'id': 'data_nascimento', 'class': 'form-control', 'name': 'data_nascimento', 'required': False}))
+	data_nascimento = forms.DateField(initial=date.today(), widget=extras.SelectDateWidget(attrs={'id': 'data_nascimento', 'class': 'form-control', 'name': 'data_nascimento', 'required': False}))
 
 	cargo = forms.ChoiceField(choices=CHOICES_CARGO, widget=forms.Select(attrs={'id': 'cargo', 'class': 'form-control', 'name': 'cargo', 'required': True}))
 	foto = forms.ImageField(label='Selecione a Foto...', widget=forms.FileInput(attrs={'id': 'foto', 'class': 'form-control', 'name': 'foto', 'style': "display:none", 'required': True}))

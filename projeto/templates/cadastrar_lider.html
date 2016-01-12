@@ -94,7 +94,7 @@
 											<img src="{{ MEDIA_URL }}{{ lider.foto }}" alt="Foto do Líder" height="100" width="100" />
 									{% else %}
 											<img src="{% static 'fotos/user-avat.png' %}" alt="Foto do Líder" height="100" width="100" />
-          				{% endif %}
+			          				{% endif %}
 			      			<label for="foto" style="padding: 2px 20px; color: blue; cursor: pointer;">Alterar Foto (Máximo de 20 Mb).</label>
 			      			<center><span class="filename"></span></center>
 									{{ form.foto }}
@@ -104,7 +104,8 @@
 			      			<label class="col-lg-1 control-label">Data de Nascimento</label>
 			      			<div class="col-lg-3">
 								<div class="input-group date" data-provide="datepicker" data-date-orientation="bottom auto" data-date-autoclose="true" data-date-language="pt-BR">
-									<input type="text" name="data_nascimento" class="form-control">
+									<input type="text" name="data_nascimento" class="form-control" value="
+									{% if lider %} {{ lider.data_nascimento | date:'d/m/Y' }} {% endif %}">
 									<div class="input-group-addon">
 										<span class="glyphicon glyphicon-th"></span>
 									</div>
